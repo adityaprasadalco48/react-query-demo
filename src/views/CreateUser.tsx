@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import React, { useContext } from 'react'
 import { useMutation } from 'react-query'
-
-import { AppContext } from '../store/app-context'
+import { Redirect } from 'react-router-dom'
 import UserForm from '../components/UserForm'
+import { AppContext } from '../store/app-context'
+
 
 const postUser = async (newUser) =>
-  await (await axios.post('http://localhost:3004/users', newUser)).data
+  await (await axios.post('https://60f834089cdca000174552b0.mockapi.io/api/vi/users', newUser)).data
 
 function CreateUser() {
   const [flashMessage, setFlashMessage] = useContext(AppContext)
-  const mutation = useMutation((newUser) => postUser(newUser), {
+  const mutation = useMutation<any, any>((newUser) => postUser(newUser), {
     onSuccess: (data) => {
       setFlashMessage(
         `New User Created - Id: ${data.id} Name: ${data.first_name} ${data.last_name}`
@@ -28,6 +28,8 @@ function CreateUser() {
   if (isSuccess) {
     return <Redirect to="/" />
   }
+
+  console.log('error', error);
 
   return (
     <div>

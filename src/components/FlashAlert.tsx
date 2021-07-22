@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-
 import CloseIcon from '../icons/close'
 import { AppContext } from '../store/app-context'
+
 
 function FlashAlert({ message }) {
   const [flashMessage, setFlashMessage] = useContext(AppContext)

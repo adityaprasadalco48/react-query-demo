@@ -1,10 +1,14 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
-
 import './form.css'
 
-function UserForm({ user, submitText, submitAction }) {
+
+function UserForm({ user, submitText, submitAction }: {
+  user?: any,
+  submitText: string,
+  submitAction: (data: any) => {}
+}) {
   const {
     register,
     formState: { errors },
@@ -75,7 +79,7 @@ function UserForm({ user, submitText, submitAction }) {
 
         <div className="flex mt-8 justify-between">
           <button
-            className="bg-teal-800 border-teal-800 shadow-md text-white btn hover:bg-gray-100 hover:border-2 hover:text-teal-900"
+            className="bg-teal-800 border-teal-800 shadow-md text-gray btn hover:bg-gray-100 hover:border-2 hover:text-teal-900"
             type="submit"
           >
             {submitText}

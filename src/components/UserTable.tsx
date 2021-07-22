@@ -1,15 +1,15 @@
-import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import React, { useContext, useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
-
-import { AppContext } from '../store/app-context'
-import FlashAlert from './FlashAlert'
-import EditIcon from '../icons/edit'
+import { Link } from 'react-router-dom'
 import DeleteIcon from '../icons/delete'
+import EditIcon from '../icons/edit'
+import { AppContext } from '../store/app-context'
 import DeleteModal from './DeleteModal'
-
+import FlashAlert from './FlashAlert'
 import './table.css'
+
+
 
 function UserTable({ users }) {
   // Delete Modal Show State
@@ -20,7 +20,7 @@ function UserTable({ users }) {
   const queryClient = useQueryClient()
 
   const deleteMutation = useMutation(
-    (id) => axios.delete(`http://localhost:3004/users/${id}`),
+    (id) => axios.delete(`https://60f834089cdca000174552b0.mockapi.io/api/vi/users/${id}`),
     {
       onSuccess: () => {
         queryClient.invalidateQueries()
@@ -41,7 +41,7 @@ function UserTable({ users }) {
 
   const hideModal = () => setShowModal(false)
 
-  const rows = users.map((user, index) => (
+  const rows = users && users.length > 0 &&users.map((user, index) => (
     <tr
       className="bg-white border border-cyan-800 hover:bg-lime-100 active:bg-lime-700 active:text-lime-100"
       key={index}
@@ -86,7 +86,7 @@ function UserTable({ users }) {
         {flashMessage && <FlashAlert message={flashMessage} />}
       </div>
       <table className="table-fixed">
-        <thead className="text-white bg-cyan-900">
+        <thead className="text-gray bg-cyan-900">
           <tr className="py-4">
             <th className="w-1/12">Id</th>
             <th className="w-3/12">First Name</th>

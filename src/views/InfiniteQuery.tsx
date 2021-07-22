@@ -1,13 +1,14 @@
+import axios from 'axios'
 import React from 'react'
 import { useInfiniteQuery } from 'react-query'
-import axios from 'axios'
 
 function InfiniteQuery() {
   const pageLimit = 5
 
   const fetchUsers = ({ pageParam = 1 }) =>
     axios.get(
-      `http://localhost:3004/users?_page=${pageParam}&_limit=${pageLimit}`
+      `https://60f834089cdca000174552b0.mockapi.io/api/vi/users/?page=${pageParam}&limit=${pageLimit}`
+      
     )
 
   const parseLinkHeader = (linkHeader) => {
@@ -29,7 +30,7 @@ function InfiniteQuery() {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery('infiniteUsers', fetchUsers, {
+  } = useInfiniteQuery<any, any>('infiniteUsers', fetchUsers, {
     getNextPageParam: (lastPage) => {
       // The following code block is specific to json-server api
       const nextPageUrl = parseLinkHeader(lastPage.headers.link)['next']

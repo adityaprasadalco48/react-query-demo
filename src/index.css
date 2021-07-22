@@ -1,3 +1,8 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   @apply bg-gray-100 text-gray-700 antialiased;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,13 +19,13 @@ h2 {
 }
 
 .btn {
-  @apply rounded font-semibold shadow-md py-1 px-4 focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply rounded font-semibold shadow-md py-1 px-4 focus:outline-none focus:border-gray-500 focus:ring-gray-500 focus:ring-2;
 }
 
 .btn-page {
-  @apply w-24 bg-white border hover:bg-teal-900 hover:text-white;
+  @apply w-24 bg-white border hover:bg-gray-900 hover:text-white;
 }
 
 .btn-load {
-  @apply w-32 bg-white border hover:bg-teal-900 hover:text-white;
+  @apply w-32 bg-white border hover:bg-gray-900 hover:text-white;
 }

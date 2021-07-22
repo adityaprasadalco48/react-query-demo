@@ -1,13 +1,13 @@
-import React from 'react'
 import axios from 'axios'
-import { useQuery, useMutation } from 'react-query'
-import { useParams, Redirect } from 'react-router-dom'
-
+import React from 'react'
+import { useMutation, useQuery } from 'react-query'
+import { Redirect, useParams } from 'react-router-dom'
 import UserForm from '../components/UserForm'
+
 
 const fetchUser = async ({ queryKey }) => {
   const [_key, { id }] = queryKey
-  const response = await fetch(`http://localhost:3004/users/${id}`)
+  const response = await fetch(`https://60f834089cdca000174552b0.mockapi.io/api/vi/users/${id}`)
 
   if (!response.ok) {
     throw new Error(response.statusText)
@@ -17,14 +17,14 @@ const fetchUser = async ({ queryKey }) => {
 }
 
 function EditUser() {
-  const { id } = useParams()
-  const { data, error, isLoading, isError } = useQuery(
+  const { id } = useParams<any>()
+  const { data, error, isLoading, isError } = useQuery<any, any>(
     ['user', { id }],
     fetchUser
   )
 
   const mutation = useMutation((updatedUser) =>
-    axios.put(`http://localhost:3004/users/${id}`, updatedUser)
+    axios.put(`https://60f834089cdca000174552b0.mockapi.io/api/vi/users/${id}`, updatedUser)
   )
 
   const { isSuccess } = mutation

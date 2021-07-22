@@ -1,13 +1,13 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-
 import UserTable from '../components/UserTable'
+
 
 function BasicQuery() {
   const fetchAllUsers = async () =>
-    await (await fetch('http://localhost:3004/users')).json()
+    await (await fetch('https://60f834089cdca000174552b0.mockapi.io/api/vi/users')).json()
 
-  const { data, error, status } = useQuery('users', fetchAllUsers)
+  const { data, error, status } = useQuery<any, any>('users', fetchAllUsers)
 
   return (
     <div>
@@ -24,3 +24,5 @@ function BasicQuery() {
 }
 
 export default BasicQuery
+
+

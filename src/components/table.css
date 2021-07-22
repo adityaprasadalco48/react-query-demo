@@ -3,7 +3,7 @@ th {
 }
 
 tbody td {
-  @apply border border-cyan-800 px-4;
+  @apply border border-gray-800 px-4;
 }
 
 tbody tr:nth-child(even) {
